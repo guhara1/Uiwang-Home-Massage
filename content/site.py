@@ -1,6 +1,6 @@
 # 의왕 출장마사지 사이트 공통 설정
 
-BASE_URL = "https://uiwang-massage.pages.dev"
+BASE_URL = "https://uiwang-home-massage.pages.dev"
 
 BRAND = "88마사지"
 PHONE = "0508-202-4719"
