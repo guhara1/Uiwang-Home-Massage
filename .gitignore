@@ -1,0 +1,6 @@
+# Reference material from other projects — not part of this site
+extracted/
+
+# Python
+__pycache__/
+*.pyc
