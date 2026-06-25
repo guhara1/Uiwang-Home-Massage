@@ -456,18 +456,21 @@ def make_related_links_html(path: str) -> str:
     hrefs = _RELATED.get(path, [])
     if not hrefs:
         return ""
-    items = "".join(
-        f'<li><a href="{h}">{_LONGTAIL[h]}</a></li>'
+    cards = "".join(
+        f'<a href="{h}" class="rel-card">'
+        '<span class="rel-card__arrow">&#8594;</span>'
+        f'<span class="rel-card__text">{_LONGTAIL[h]}</span>'
+        "</a>"
         for h in hrefs
         if h in _LONGTAIL
     )
-    if not items:
+    if not cards:
         return ""
     return (
-        '<nav class="related-links" aria-label="관련 안내 페이지">'
-        "<p><strong>관련 안내 페이지</strong></p>"
-        f"<ul>{items}</ul>"
-        "</nav>"
+        '<aside class="related-links" aria-label="관련 안내 페이지">'
+        '<p class="related-links__heading">관련 안내 페이지</p>'
+        f'<div class="related-links__grid">{cards}</div>'
+        "</aside>"
     )
 
 
