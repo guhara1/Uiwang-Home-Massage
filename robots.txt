@@ -2,3 +2,8 @@ User-agent: *
 Allow: /
 
 Sitemap: https://uiwang-home-massage.pages.dev/sitemap.xml
+Sitemap: https://uiwang-home-massage.pages.dev/rss.xml
+
+# IndexNow
+# Key: 77793038cacd4cc5a168023bce179a61
+# Key-Location: https://uiwang-home-massage.pages.dev/77793038cacd4cc5a168023bce179a61.txt

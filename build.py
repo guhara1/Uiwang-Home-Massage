@@ -21,6 +21,7 @@ from content.site import BASE_URL, BRAND, NAV, PHONE, PHONE_DISPLAY, TELEGRAM
 ROOT = os.path.dirname(os.path.abspath(__file__))
 PUBLIC_DIR = ROOT
 MIN_INDEX_CHARS = 2000
+INDEXNOW_KEY = "77793038cacd4cc5a168023bce179a61"
 
 
 def text_length(body_html: str) -> int:
@@ -583,6 +584,8 @@ def render_page(page: dict) -> str:
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
 <link rel="stylesheet" href="/assets/style.css">
+<meta name="naver-site-verification" content="d446e53de1b0f71d1dcbc1db6227c4b7a0f10a1f">
+<link rel="alternate" type="application/rss+xml" title="{BRAND} RSS" href="{BASE_URL.rstrip('/')}/rss.xml">
 {auto_schema}{extra_head}</head>
 <body>
 <header class="site-header">
@@ -703,11 +706,47 @@ def build() -> None:
             f"{urls}\n</urlset>\n"
         )
 
-    # robots.txt
+    # robots.txt — Naver/Google 크롤러 + IndexNow + sitemap 등록
+    base = BASE_URL.rstrip("/")
     with open(os.path.join(PUBLIC_DIR, "robots.txt"), "w", encoding="utf-8") as f:
         f.write(
-            "User-agent: *\nAllow: /\n\n"
-            f"Sitemap: {BASE_URL.rstrip('/')}/sitemap.xml\n"
+            "User-agent: *\n"
+            "Allow: /\n\n"
+            f"Sitemap: {base}/sitemap.xml\n"
+            f"Sitemap: {base}/rss.xml\n\n"
+            f"# IndexNow\n"
+            f"# Key: {INDEXNOW_KEY}\n"
+            f"# Key-Location: {base}/{INDEXNOW_KEY}.txt\n"
+        )
+
+    # IndexNow 키파일
+    with open(os.path.join(PUBLIC_DIR, f"{INDEXNOW_KEY}.txt"), "w", encoding="utf-8") as f:
+        f.write(INDEXNOW_KEY)
+
+    # rss.xml
+    index_pages = [(p, u) for p, u in zip(PAGES, [BASE_URL.rstrip("/") + "/" + p["path"] for p in PAGES])
+                   if not (p.get("noindex") or text_length(p["body"]) < MIN_INDEX_CHARS)]
+    rss_items = "\n".join(
+        f"  <item>\n"
+        f"    <title>{html.escape(p['title'])}</title>\n"
+        f"    <link>{u}</link>\n"
+        f"    <description>{html.escape(p['desc'])}</description>\n"
+        f"    <guid isPermaLink=\"true\">{u}</guid>\n"
+        f"  </item>"
+        for p, u in index_pages
+    )
+    with open(os.path.join(PUBLIC_DIR, "rss.xml"), "w", encoding="utf-8") as f:
+        f.write(
+            '<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n'
+            "<channel>\n"
+            f"  <title>{BRAND} — 의왕 출장마사지·홈타이</title>\n"
+            f"  <link>{base}/gyeonggi/uiwang/</link>\n"
+            f"  <description>경기도 의왕시 전지역 출장마사지·홈타이 지역별 안내</description>\n"
+            "  <language>ko</language>\n"
+            f'  <atom:link href="{base}/rss.xml" rel="self" type="application/rss+xml"/>\n'
+            f"{rss_items}\n"
+            "</channel>\n</rss>\n"
         )
 
     # .nojekyll
