@@ -7,7 +7,7 @@ def _zone(path, title, desc, h1, breadcrumb, body):
 # ── 의왕역·부곡 생활권 ────────────────────────────────────────────
 uiwang_bugok = _zone(
     path="gyeonggi/uiwang/area/uiwang-station-bugok/",
-    title="의왕역·부곡 생활권｜출장마사지 예약 기준 안내",
+    title="의왕역·부곡 생활권｜출장마사지·홈타이 예약 기준 안내",
     desc="의왕역·부곡동 생활권 출장마사지 예약 전 방문 주소와 이동 기준을 확인하세요.",
     h1="의왕역·부곡 생활권 출장마사지",
     breadcrumb=[("의왕", "/gyeonggi/uiwang/"), ("생활권 안내", "/gyeonggi/uiwang/area/uiwang-station-bugok/")],
@@ -80,7 +80,7 @@ uiwang_bugok = _zone(
 # ── 고천·왕곡 생활권 ──────────────────────────────────────────────
 gocheon_wanggok = _zone(
     path="gyeonggi/uiwang/area/gocheon-wanggok/",
-    title="고천·왕곡 생활권｜출장마사지 예약 기준 안내",
+    title="고천·왕곡 생활권｜출장마사지·홈타이 예약 기준 안내",
     desc="고천동·왕곡동 생활권 출장마사지 예약 전 의왕시청 인근 이동 기준을 확인하세요.",
     h1="고천·왕곡 생활권 출장마사지",
     breadcrumb=[("의왕", "/gyeonggi/uiwang/"), ("생활권 안내", "/gyeonggi/uiwang/area/gocheon-wanggok/")],
@@ -153,7 +153,7 @@ gocheon_wanggok = _zone(
 # ── 오전동 생활권 ─────────────────────────────────────────────────
 ojeon_area = _zone(
     path="gyeonggi/uiwang/area/ojeon-dong/",
-    title="오전동 생활권｜출장마사지 예약 기준 안내",
+    title="오전동 생활권｜출장마사지·홈타이 예약 기준 안내",
     desc="오전동 생활권 출장마사지 예약 전 고천동·내손동 이동 기준을 확인하세요.",
     h1="오전동 생활권 출장마사지",
     breadcrumb=[("의왕", "/gyeonggi/uiwang/"), ("생활권 안내", "/gyeonggi/uiwang/area/ojeon-dong/")],
@@ -226,7 +226,7 @@ ojeon_area = _zone(
 # ── 내손·포일 생활권 ──────────────────────────────────────────────
 naeson_poil = _zone(
     path="gyeonggi/uiwang/area/naeson-poil/",
-    title="내손·포일 생활권｜출장마사지 예약 기준 안내",
+    title="내손·포일 생활권｜출장마사지·홈타이 예약 기준 안내",
     desc="내손동·포일동 생활권 출장마사지 예약 전 평촌·인덕원 인접 이동 기준을 확인하세요.",
     h1="내손·포일 생활권 출장마사지",
     breadcrumb=[("의왕", "/gyeonggi/uiwang/"), ("생활권 안내", "/gyeonggi/uiwang/area/naeson-poil/")],
@@ -299,7 +299,7 @@ naeson_poil = _zone(
 # ── 청계·학의 생활권 ──────────────────────────────────────────────
 cheonggye_hagui = _zone(
     path="gyeonggi/uiwang/area/cheonggye-hagui/",
-    title="청계·학의 생활권｜출장마사지 예약 기준 안내",
+    title="청계·학의 생활권｜출장마사지·홈타이 예약 기준 안내",
     desc="청계동·학의동 생활권 출장마사지 예약 전 백운밸리·인덕원 이동 기준을 확인하세요.",
     h1="청계·학의 생활권 출장마사지",
     breadcrumb=[("의왕", "/gyeonggi/uiwang/"), ("생활권 안내", "/gyeonggi/uiwang/area/cheonggye-hagui/")],
@@ -372,7 +372,7 @@ cheonggye_hagui = _zone(
 # ── 백운밸리 생활권 ───────────────────────────────────────────────
 baegun_valley = _zone(
     path="gyeonggi/uiwang/area/baegun-valley/",
-    title="백운밸리 생활권｜출장마사지 예약 기준 안내",
+    title="백운밸리 생활권｜출장마사지·홈타이 예약 기준 안내",
     desc="백운밸리 생활권 출장마사지 예약 전 청계동·학의동 이동 기준을 확인하세요.",
     h1="백운밸리 생활권 출장마사지",
     breadcrumb=[("의왕", "/gyeonggi/uiwang/"), ("생활권 안내", "/gyeonggi/uiwang/area/baegun-valley/")],
@@ -446,7 +446,7 @@ baegun_valley = _zone(
 # ── 부곡·삼동 생활권 ──────────────────────────────────────────────
 bugok_sam = _zone(
     path="gyeonggi/uiwang/area/bugok-sam-dong/",
-    title="부곡·삼동 생활권｜출장마사지 예약 기준 안내",
+    title="부곡·삼동 생활권｜출장마사지·홈타이 예약 기준 안내",
     desc="부곡동·삼동 생활권 출장마사지 예약 전 의왕역·철도 인접 이동 기준을 확인하세요.",
     h1="부곡·삼동 생활권 출장마사지",
     breadcrumb=[("의왕", "/gyeonggi/uiwang/"), ("생활권 안내", "/gyeonggi/uiwang/area/bugok-sam-dong/")],
@@ -519,7 +519,7 @@ bugok_sam = _zone(
 # ── 월암·초평 생활권 ──────────────────────────────────────────────
 woram_chopyeong = _zone(
     path="gyeonggi/uiwang/area/woram-chopyeong/",
-    title="월암·초평 생활권｜출장마사지 예약 기준 안내",
+    title="월암·초평 생활권｜출장마사지·홈타이 예약 기준 안내",
     desc="월암동·초평동 생활권 출장마사지 예약 전 차량 이동·추가 이동비를 확인하세요.",
     h1="월암·초평 생활권 출장마사지",
     breadcrumb=[("의왕", "/gyeonggi/uiwang/"), ("생활권 안내", "/gyeonggi/uiwang/area/woram-chopyeong/")],
@@ -593,7 +593,7 @@ woram_chopyeong = _zone(
 # ── 이동·오봉 인접 생활권 ─────────────────────────────────────────
 i_dong_obong = _zone(
     path="gyeonggi/uiwang/area/i-dong-obong/",
-    title="이동·오봉 인접 생활권｜출장마사지 예약 기준 안내",
+    title="이동·오봉 인접 생활권｜출장마사지·홈타이 예약 기준 안내",
     desc="이동·오봉 생활권 출장마사지 예약 전 차량 이동 기준과 추가 이동비를 확인하세요.",
     h1="이동·오봉 인접 생활권 출장마사지",
     breadcrumb=[("의왕", "/gyeonggi/uiwang/"), ("생활권 안내", "/gyeonggi/uiwang/area/i-dong-obong/")],
@@ -667,7 +667,7 @@ i_dong_obong = _zone(
 # ── 인덕원·청계 인접 생활권 ───────────────────────────────────────
 indeogwon_cheonggye = _zone(
     path="gyeonggi/uiwang/area/indeogwon-cheonggye-nearby/",
-    title="인덕원·청계 인접 생활권｜출장마사지 예약 기준 안내",
+    title="인덕원·청계 인접 생활권｜출장마사지·홈타이 예약 기준 안내",
     desc="인덕원·청계 인접 생활권 출장마사지 예약 전 포일동·내손동 이동 기준을 확인하세요.",
     h1="인덕원·청계 인접 생활권 출장마사지",
     breadcrumb=[("의왕", "/gyeonggi/uiwang/"), ("생활권 안내", "/gyeonggi/uiwang/area/indeogwon-cheonggye-nearby/")],
@@ -740,7 +740,7 @@ indeogwon_cheonggye = _zone(
 # ── 평촌·내손 인접 생활권 ─────────────────────────────────────────
 pyeongchon_naeson = _zone(
     path="gyeonggi/uiwang/area/pyeongchon-naeson-nearby/",
-    title="평촌·내손 인접 생활권｜출장마사지 예약 기준 안내",
+    title="평촌·내손 인접 생활권｜출장마사지·홈타이 예약 기준 안내",
     desc="평촌·내손 인접 생활권 출장마사지 예약 전 내손동·오전동 이동 기준을 확인하세요.",
     h1="평촌·내손 인접 생활권 출장마사지",
     breadcrumb=[("의왕", "/gyeonggi/uiwang/"), ("생활권 안내", "/gyeonggi/uiwang/area/pyeongchon-naeson-nearby/")],
@@ -813,7 +813,7 @@ pyeongchon_naeson = _zone(
 # ── 군포·부곡 인접 생활권 ─────────────────────────────────────────
 gunpo_bugok = _zone(
     path="gyeonggi/uiwang/area/gunpo-bugok-nearby/",
-    title="군포·부곡 인접 생활권｜출장마사지 예약 기준 안내",
+    title="군포·부곡 인접 생활권｜출장마사지·홈타이 예약 기준 안내",
     desc="군포·부곡 인접 생활권 출장마사지 예약 전 부곡동·오전동 이동 기준을 확인하세요.",
     h1="군포·부곡 인접 생활권 출장마사지",
     breadcrumb=[("의왕", "/gyeonggi/uiwang/"), ("생활권 안내", "/gyeonggi/uiwang/area/gunpo-bugok-nearby/")],

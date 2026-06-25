@@ -7,7 +7,7 @@ def _sta(path, title, desc, h1, breadcrumb, body):
 # ── 의왕역 (핵심 역세권) ──────────────────────────────────────────
 uiwang_station = _sta(
     path="gyeonggi/uiwang/station/uiwang-station/",
-    title="의왕역 출장마사지｜부곡동·삼동 생활권 안내",
+    title="의왕역 출장마사지·홈타이｜부곡동·삼동 생활권 안내",
     desc="의왕역 출장마사지 예약 전 부곡동, 삼동, 월암동 인접 생활권을 확인하세요.",
     h1="의왕역 출장마사지",
     breadcrumb=[("의왕", "/gyeonggi/uiwang/"), ("역세권 안내", "/gyeonggi/uiwang/station/uiwang-station/")],
@@ -81,7 +81,7 @@ uiwang_station = _sta(
 # ── 인덕원역 인접 생활권 ──────────────────────────────────────────
 indeogwon = _sta(
     path="gyeonggi/uiwang/station/indeogwon-nearby-area/",
-    title="인덕원역 인접 출장마사지｜청계동·포일동 이동 기준 안내",
+    title="인덕원역 인접 출장마사지·홈타이｜청계동·포일동 이동 기준 안내",
     desc="인덕원역 인접 출장마사지 예약 전 청계동, 포일동, 내손동 이동 기준을 확인하세요.",
     h1="인덕원역 인접 생활권 출장마사지",
     breadcrumb=[("의왕", "/gyeonggi/uiwang/"), ("역세권 안내", "/gyeonggi/uiwang/station/indeogwon-nearby-area/")],
@@ -155,7 +155,7 @@ indeogwon = _sta(
 # ── 평촌역 인접 생활권 ────────────────────────────────────────────
 pyeongchon = _sta(
     path="gyeonggi/uiwang/station/pyeongchon-nearby-area/",
-    title="평촌역 인접 출장마사지｜내손동·오전동 이동 기준 안내",
+    title="평촌역 인접 출장마사지·홈타이｜내손동·오전동 이동 기준 안내",
     desc="평촌역 인접 출장마사지 예약 전 내손동, 오전동 이동 기준을 확인하세요.",
     h1="평촌역 인접 생활권 출장마사지",
     breadcrumb=[("의왕", "/gyeonggi/uiwang/"), ("역세권 안내", "/gyeonggi/uiwang/station/pyeongchon-nearby-area/")],
@@ -228,7 +228,7 @@ pyeongchon = _sta(
 # ── 범계역 인접 생활권 ────────────────────────────────────────────
 beomgye = _sta(
     path="gyeonggi/uiwang/station/beomgye-nearby-area/",
-    title="범계역 인접 출장마사지｜오전동·내손동 이동 기준 안내",
+    title="범계역 인접 출장마사지·홈타이｜오전동·내손동 이동 기준 안내",
     desc="범계역 인접 출장마사지 예약 전 오전동, 내손동 이동 기준을 확인하세요.",
     h1="범계역 인접 생활권 출장마사지",
     breadcrumb=[("의왕", "/gyeonggi/uiwang/"), ("역세권 안내", "/gyeonggi/uiwang/station/beomgye-nearby-area/")],
@@ -301,7 +301,7 @@ beomgye = _sta(
 # ── 군포역 인접 생활권 ────────────────────────────────────────────
 gunpo = _sta(
     path="gyeonggi/uiwang/station/gunpo-nearby-area/",
-    title="군포역 인접 출장마사지｜부곡동·오전동 이동 기준 안내",
+    title="군포역 인접 출장마사지·홈타이｜부곡동·오전동 이동 기준 안내",
     desc="군포역 인접 출장마사지 예약 전 부곡동, 오전동 이동 기준을 확인하세요.",
     h1="군포역 인접 생활권 출장마사지",
     breadcrumb=[("의왕", "/gyeonggi/uiwang/"), ("역세권 안내", "/gyeonggi/uiwang/station/gunpo-nearby-area/")],
@@ -374,7 +374,7 @@ gunpo = _sta(
 # ── 당정역 인접 생활권 ────────────────────────────────────────────
 dangjeong = _sta(
     path="gyeonggi/uiwang/station/dangjeong-nearby-area/",
-    title="당정역 인접 출장마사지｜부곡동·군포 인접 생활권 안내",
+    title="당정역 인접 출장마사지·홈타이｜부곡동·군포 인접 생활권 안내",
     desc="당정역 인접 출장마사지 예약 전 부곡동, 군포 인접 생활권 이동 기준을 확인하세요.",
     h1="당정역 인접 생활권 출장마사지",
     breadcrumb=[("의왕", "/gyeonggi/uiwang/"), ("역세권 안내", "/gyeonggi/uiwang/station/dangjeong-nearby-area/")],
@@ -447,7 +447,7 @@ dangjeong = _sta(
 # ── 성균관대역 인접 생활권 ────────────────────────────────────────
 sungkyunkwan = _sta(
     path="gyeonggi/uiwang/station/sungkyunkwan-univ-nearby-area/",
-    title="성균관대역 인접 출장마사지｜월암동·초평동 이동 기준 안내",
+    title="성균관대역 인접 출장마사지·홈타이｜월암동·초평동 이동 기준 안내",
     desc="성균관대역 인접 출장마사지 예약 전 월암동, 초평동 이동 기준을 확인하세요.",
     h1="성균관대역 인접 생활권 출장마사지",
     breadcrumb=[("의왕", "/gyeonggi/uiwang/"), ("역세권 안내", "/gyeonggi/uiwang/station/sungkyunkwan-univ-nearby-area/")],
