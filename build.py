@@ -369,6 +369,12 @@ def build() -> None:
     # .nojekyll
     open(os.path.join(PUBLIC_DIR, ".nojekyll"), "w").close()
 
+    # root index.html — serve main page at / without redirect
+    main_page = next(p for p in PAGES if p["path"] == "gyeonggi/uiwang/")
+    main_html = render_page(main_page)
+    with open(os.path.join(PUBLIC_DIR, "index.html"), "w", encoding="utf-8") as f:
+        f.write(main_html)
+
     width = max(len(p) for p, _, _ in report)
     print(f"{'PATH'.ljust(width)}  CHARS  ROBOTS")
     for p, c, r in sorted(report):
