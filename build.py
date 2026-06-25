@@ -113,14 +113,22 @@ def make_org_schema() -> dict:
     base = BASE_URL.rstrip("/")
     return {
         "@context": "https://schema.org",
-        "@type": "Organization",
+        "@type": ["LocalBusiness", "HealthAndBeautyBusiness"],
         "@id": base + "/#organization",
         "name": BRAND,
         "url": base + "/gyeonggi/uiwang/",
         "logo": base + "/assets/apple-touch-icon.png",
         "image": base + "/assets/og-image.png",
         "telephone": PHONE,
+        "priceRange": "₩₩",
         "areaServed": {"@type": "AdministrativeArea", "name": "경기도 의왕시"},
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "187",
+            "bestRating": "5",
+            "worstRating": "1",
+        },
         "contactPoint": {
             "@type": "ContactPoint",
             "telephone": PHONE,
@@ -129,6 +137,338 @@ def make_org_schema() -> dict:
             "areaServed": "KR",
         },
     }
+
+
+# ── 롱테일 내부링크 ────────────────────────────────────────────────────────────
+
+_LONGTAIL = {
+    "/gyeonggi/uiwang/":                                       "의왕 전지역 출장마사지·홈타이 예약 및 생활권별 방문 기준",
+    "/gyeonggi/uiwang/gocheon-dong/":                          "고천동 출장마사지·홈타이 예약 방법과 이동 가능 지역",
+    "/gyeonggi/uiwang/wanggok-dong/":                          "왕곡동 출장마사지·홈타이 당일 예약 및 방문 기준 안내",
+    "/gyeonggi/uiwang/ojeon-dong/":                            "오전동 출장마사지·홈타이 예약 시 확인해야 할 이동 기준",
+    "/gyeonggi/uiwang/bugok-dong/":                            "부곡동 출장마사지·홈타이 아파트 단지 방문 및 예약 안내",
+    "/gyeonggi/uiwang/sam-dong/":                              "삼동 출장마사지·홈타이 의왕역 인근 예약 가능 지역",
+    "/gyeonggi/uiwang/i-dong/":                                "이동 출장마사지·홈타이 방문 기준 및 추가 이동비 안내",
+    "/gyeonggi/uiwang/woram-dong/":                            "월암동 출장마사지·홈타이 예약 전 방문 가능 주소 확인",
+    "/gyeonggi/uiwang/chopyeong-dong/":                        "초평동 출장마사지·홈타이 수원 인접 지역 방문 기준",
+    "/gyeonggi/uiwang/naeson-dong/":                           "내손동 출장마사지·홈타이 평촌 인접 예약 및 방문 안내",
+    "/gyeonggi/uiwang/poil-dong/":                             "포일동 출장마사지·홈타이 인덕원역 인근 예약 방법",
+    "/gyeonggi/uiwang/cheonggye-dong/":                        "청계동 출장마사지·홈타이 백운밸리 인근 방문 기준",
+    "/gyeonggi/uiwang/hagui-dong/":                            "학의동 출장마사지·홈타이 청계·백운밸리 생활권 예약",
+    "/gyeonggi/uiwang/baegun-valley/":                         "백운밸리 출장마사지·홈타이 청계동 인접 방문 안내",
+    "/gyeonggi/uiwang/station/uiwang-station/":                "의왕역 인근 출장마사지·홈타이 당일 예약 가능 여부",
+    "/gyeonggi/uiwang/station/indeogwon-nearby-area/":         "인덕원역 인접 출장마사지·홈타이 이동 기준 및 예약",
+    "/gyeonggi/uiwang/station/pyeongchon-nearby-area/":        "평촌역 인접 의왕 출장마사지·홈타이 예약 방법",
+    "/gyeonggi/uiwang/station/beomgye-nearby-area/":           "범계역 인접 의왕 출장마사지·홈타이 방문 기준",
+    "/gyeonggi/uiwang/station/gunpo-nearby-area/":             "군포역 인접 의왕 출장마사지·홈타이 이동 가능 지역",
+    "/gyeonggi/uiwang/station/dangjeong-nearby-area/":         "당정역 인접 의왕 출장마사지·홈타이 예약 및 방문",
+    "/gyeonggi/uiwang/station/sungkyunkwan-univ-nearby-area/": "성균관대역 인접 의왕 출장마사지·홈타이 이동 기준",
+    "/gyeonggi/uiwang/area/uiwang-station-bugok/":             "의왕역·부곡 생활권 출장마사지·홈타이 방문 조건",
+    "/gyeonggi/uiwang/area/gocheon-wanggok/":                  "고천·왕곡 생활권 출장마사지·홈타이 예약 가능 지역",
+    "/gyeonggi/uiwang/area/ojeon-dong/":                       "오전동 생활권 출장마사지·홈타이 이동 기준 상세 안내",
+    "/gyeonggi/uiwang/area/naeson-poil/":                      "내손·포일 생활권 출장마사지·홈타이 평촌 인접 예약",
+    "/gyeonggi/uiwang/area/cheonggye-hagui/":                  "청계·학의 생활권 출장마사지·홈타이 방문 조건 확인",
+    "/gyeonggi/uiwang/area/baegun-valley/":                    "백운밸리 생활권 출장마사지·홈타이 청계 인접 예약",
+    "/gyeonggi/uiwang/area/bugok-sam-dong/":                   "부곡·삼동 생활권 출장마사지·홈타이 의왕역 근처 예약",
+    "/gyeonggi/uiwang/area/woram-chopyeong/":                  "월암·초평 생활권 출장마사지·홈타이 방문 가능 기준",
+    "/gyeonggi/uiwang/area/i-dong-obong/":                     "이동·오봉 인접 생활권 출장마사지·홈타이 이동비 안내",
+    "/gyeonggi/uiwang/area/indeogwon-cheonggye-nearby/":       "인덕원·청계 인접 출장마사지·홈타이 예약 조건",
+    "/gyeonggi/uiwang/area/pyeongchon-naeson-nearby/":         "평촌·내손 인접 출장마사지·홈타이 방문 기준 안내",
+    "/gyeonggi/uiwang/area/gunpo-bugok-nearby/":               "군포·부곡 인접 출장마사지·홈타이 이동비 및 예약",
+    "/gyeonggi/uiwang/reservation/":                           "의왕 출장마사지·홈타이 24시간 예약 방법 및 절차",
+    "/gyeonggi/uiwang/check/":                                 "의왕 출장마사지·홈타이 예약 전 필수 확인사항",
+    "/gyeonggi/uiwang/guide/":                                 "의왕 홈타이 서비스 이용 가이드 및 준비사항",
+    "/gyeonggi/uiwang/support/":                               "의왕 출장마사지 88마사지 고객센터 문의",
+    "/gyeonggi/uiwang/support/privacy/":                       "88마사지 개인정보처리방침 확인",
+}
+
+_RELATED = {
+    "gyeonggi/uiwang/": [
+        "/gyeonggi/uiwang/station/uiwang-station/",
+        "/gyeonggi/uiwang/area/uiwang-station-bugok/",
+        "/gyeonggi/uiwang/area/gocheon-wanggok/",
+        "/gyeonggi/uiwang/naeson-dong/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/gocheon-dong/": [
+        "/gyeonggi/uiwang/wanggok-dong/",
+        "/gyeonggi/uiwang/ojeon-dong/",
+        "/gyeonggi/uiwang/area/gocheon-wanggok/",
+        "/gyeonggi/uiwang/station/uiwang-station/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/wanggok-dong/": [
+        "/gyeonggi/uiwang/gocheon-dong/",
+        "/gyeonggi/uiwang/ojeon-dong/",
+        "/gyeonggi/uiwang/area/gocheon-wanggok/",
+        "/gyeonggi/uiwang/station/dangjeong-nearby-area/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/ojeon-dong/": [
+        "/gyeonggi/uiwang/gocheon-dong/",
+        "/gyeonggi/uiwang/naeson-dong/",
+        "/gyeonggi/uiwang/area/ojeon-dong/",
+        "/gyeonggi/uiwang/station/beomgye-nearby-area/",
+        "/gyeonggi/uiwang/check/",
+    ],
+    "gyeonggi/uiwang/bugok-dong/": [
+        "/gyeonggi/uiwang/sam-dong/",
+        "/gyeonggi/uiwang/gocheon-dong/",
+        "/gyeonggi/uiwang/area/uiwang-station-bugok/",
+        "/gyeonggi/uiwang/station/uiwang-station/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/sam-dong/": [
+        "/gyeonggi/uiwang/bugok-dong/",
+        "/gyeonggi/uiwang/i-dong/",
+        "/gyeonggi/uiwang/area/bugok-sam-dong/",
+        "/gyeonggi/uiwang/station/uiwang-station/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/i-dong/": [
+        "/gyeonggi/uiwang/sam-dong/",
+        "/gyeonggi/uiwang/woram-dong/",
+        "/gyeonggi/uiwang/area/i-dong-obong/",
+        "/gyeonggi/uiwang/station/uiwang-station/",
+        "/gyeonggi/uiwang/check/",
+    ],
+    "gyeonggi/uiwang/woram-dong/": [
+        "/gyeonggi/uiwang/chopyeong-dong/",
+        "/gyeonggi/uiwang/i-dong/",
+        "/gyeonggi/uiwang/area/woram-chopyeong/",
+        "/gyeonggi/uiwang/station/sungkyunkwan-univ-nearby-area/",
+        "/gyeonggi/uiwang/check/",
+    ],
+    "gyeonggi/uiwang/chopyeong-dong/": [
+        "/gyeonggi/uiwang/woram-dong/",
+        "/gyeonggi/uiwang/area/woram-chopyeong/",
+        "/gyeonggi/uiwang/station/sungkyunkwan-univ-nearby-area/",
+        "/gyeonggi/uiwang/check/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/naeson-dong/": [
+        "/gyeonggi/uiwang/poil-dong/",
+        "/gyeonggi/uiwang/ojeon-dong/",
+        "/gyeonggi/uiwang/area/naeson-poil/",
+        "/gyeonggi/uiwang/station/pyeongchon-nearby-area/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/poil-dong/": [
+        "/gyeonggi/uiwang/naeson-dong/",
+        "/gyeonggi/uiwang/cheonggye-dong/",
+        "/gyeonggi/uiwang/area/naeson-poil/",
+        "/gyeonggi/uiwang/station/indeogwon-nearby-area/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/cheonggye-dong/": [
+        "/gyeonggi/uiwang/hagui-dong/",
+        "/gyeonggi/uiwang/baegun-valley/",
+        "/gyeonggi/uiwang/area/cheonggye-hagui/",
+        "/gyeonggi/uiwang/station/indeogwon-nearby-area/",
+        "/gyeonggi/uiwang/check/",
+    ],
+    "gyeonggi/uiwang/hagui-dong/": [
+        "/gyeonggi/uiwang/cheonggye-dong/",
+        "/gyeonggi/uiwang/baegun-valley/",
+        "/gyeonggi/uiwang/area/cheonggye-hagui/",
+        "/gyeonggi/uiwang/station/indeogwon-nearby-area/",
+        "/gyeonggi/uiwang/check/",
+    ],
+    "gyeonggi/uiwang/baegun-valley/": [
+        "/gyeonggi/uiwang/cheonggye-dong/",
+        "/gyeonggi/uiwang/hagui-dong/",
+        "/gyeonggi/uiwang/area/baegun-valley/",
+        "/gyeonggi/uiwang/check/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/station/uiwang-station/": [
+        "/gyeonggi/uiwang/bugok-dong/",
+        "/gyeonggi/uiwang/sam-dong/",
+        "/gyeonggi/uiwang/area/uiwang-station-bugok/",
+        "/gyeonggi/uiwang/area/bugok-sam-dong/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/station/indeogwon-nearby-area/": [
+        "/gyeonggi/uiwang/poil-dong/",
+        "/gyeonggi/uiwang/cheonggye-dong/",
+        "/gyeonggi/uiwang/area/indeogwon-cheonggye-nearby/",
+        "/gyeonggi/uiwang/area/naeson-poil/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/station/pyeongchon-nearby-area/": [
+        "/gyeonggi/uiwang/naeson-dong/",
+        "/gyeonggi/uiwang/ojeon-dong/",
+        "/gyeonggi/uiwang/area/pyeongchon-naeson-nearby/",
+        "/gyeonggi/uiwang/area/ojeon-dong/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/station/beomgye-nearby-area/": [
+        "/gyeonggi/uiwang/ojeon-dong/",
+        "/gyeonggi/uiwang/naeson-dong/",
+        "/gyeonggi/uiwang/area/ojeon-dong/",
+        "/gyeonggi/uiwang/station/pyeongchon-nearby-area/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/station/gunpo-nearby-area/": [
+        "/gyeonggi/uiwang/bugok-dong/",
+        "/gyeonggi/uiwang/gocheon-dong/",
+        "/gyeonggi/uiwang/area/gunpo-bugok-nearby/",
+        "/gyeonggi/uiwang/station/uiwang-station/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/station/dangjeong-nearby-area/": [
+        "/gyeonggi/uiwang/bugok-dong/",
+        "/gyeonggi/uiwang/wanggok-dong/",
+        "/gyeonggi/uiwang/area/uiwang-station-bugok/",
+        "/gyeonggi/uiwang/station/uiwang-station/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/station/sungkyunkwan-univ-nearby-area/": [
+        "/gyeonggi/uiwang/woram-dong/",
+        "/gyeonggi/uiwang/chopyeong-dong/",
+        "/gyeonggi/uiwang/area/woram-chopyeong/",
+        "/gyeonggi/uiwang/check/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/area/uiwang-station-bugok/": [
+        "/gyeonggi/uiwang/bugok-dong/",
+        "/gyeonggi/uiwang/sam-dong/",
+        "/gyeonggi/uiwang/station/uiwang-station/",
+        "/gyeonggi/uiwang/area/bugok-sam-dong/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/area/gocheon-wanggok/": [
+        "/gyeonggi/uiwang/gocheon-dong/",
+        "/gyeonggi/uiwang/wanggok-dong/",
+        "/gyeonggi/uiwang/station/uiwang-station/",
+        "/gyeonggi/uiwang/area/ojeon-dong/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/area/ojeon-dong/": [
+        "/gyeonggi/uiwang/ojeon-dong/",
+        "/gyeonggi/uiwang/area/gocheon-wanggok/",
+        "/gyeonggi/uiwang/station/beomgye-nearby-area/",
+        "/gyeonggi/uiwang/station/pyeongchon-nearby-area/",
+        "/gyeonggi/uiwang/check/",
+    ],
+    "gyeonggi/uiwang/area/naeson-poil/": [
+        "/gyeonggi/uiwang/naeson-dong/",
+        "/gyeonggi/uiwang/poil-dong/",
+        "/gyeonggi/uiwang/station/indeogwon-nearby-area/",
+        "/gyeonggi/uiwang/area/cheonggye-hagui/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/area/cheonggye-hagui/": [
+        "/gyeonggi/uiwang/cheonggye-dong/",
+        "/gyeonggi/uiwang/hagui-dong/",
+        "/gyeonggi/uiwang/area/baegun-valley/",
+        "/gyeonggi/uiwang/station/indeogwon-nearby-area/",
+        "/gyeonggi/uiwang/check/",
+    ],
+    "gyeonggi/uiwang/area/baegun-valley/": [
+        "/gyeonggi/uiwang/baegun-valley/",
+        "/gyeonggi/uiwang/cheonggye-dong/",
+        "/gyeonggi/uiwang/area/cheonggye-hagui/",
+        "/gyeonggi/uiwang/check/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/area/bugok-sam-dong/": [
+        "/gyeonggi/uiwang/bugok-dong/",
+        "/gyeonggi/uiwang/sam-dong/",
+        "/gyeonggi/uiwang/area/uiwang-station-bugok/",
+        "/gyeonggi/uiwang/station/uiwang-station/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/area/woram-chopyeong/": [
+        "/gyeonggi/uiwang/woram-dong/",
+        "/gyeonggi/uiwang/chopyeong-dong/",
+        "/gyeonggi/uiwang/station/sungkyunkwan-univ-nearby-area/",
+        "/gyeonggi/uiwang/area/i-dong-obong/",
+        "/gyeonggi/uiwang/check/",
+    ],
+    "gyeonggi/uiwang/area/i-dong-obong/": [
+        "/gyeonggi/uiwang/i-dong/",
+        "/gyeonggi/uiwang/sam-dong/",
+        "/gyeonggi/uiwang/area/bugok-sam-dong/",
+        "/gyeonggi/uiwang/station/uiwang-station/",
+        "/gyeonggi/uiwang/check/",
+    ],
+    "gyeonggi/uiwang/area/indeogwon-cheonggye-nearby/": [
+        "/gyeonggi/uiwang/cheonggye-dong/",
+        "/gyeonggi/uiwang/poil-dong/",
+        "/gyeonggi/uiwang/station/indeogwon-nearby-area/",
+        "/gyeonggi/uiwang/area/naeson-poil/",
+        "/gyeonggi/uiwang/check/",
+    ],
+    "gyeonggi/uiwang/area/pyeongchon-naeson-nearby/": [
+        "/gyeonggi/uiwang/naeson-dong/",
+        "/gyeonggi/uiwang/ojeon-dong/",
+        "/gyeonggi/uiwang/station/pyeongchon-nearby-area/",
+        "/gyeonggi/uiwang/area/ojeon-dong/",
+        "/gyeonggi/uiwang/reservation/",
+    ],
+    "gyeonggi/uiwang/area/gunpo-bugok-nearby/": [
+        "/gyeonggi/uiwang/bugok-dong/",
+        "/gyeonggi/uiwang/gocheon-dong/",
+        "/gyeonggi/uiwang/station/gunpo-nearby-area/",
+        "/gyeonggi/uiwang/area/uiwang-station-bugok/",
+        "/gyeonggi/uiwang/check/",
+    ],
+    "gyeonggi/uiwang/reservation/": [
+        "/gyeonggi/uiwang/",
+        "/gyeonggi/uiwang/check/",
+        "/gyeonggi/uiwang/bugok-dong/",
+        "/gyeonggi/uiwang/naeson-dong/",
+        "/gyeonggi/uiwang/station/uiwang-station/",
+    ],
+    "gyeonggi/uiwang/check/": [
+        "/gyeonggi/uiwang/",
+        "/gyeonggi/uiwang/reservation/",
+        "/gyeonggi/uiwang/guide/",
+        "/gyeonggi/uiwang/cheonggye-dong/",
+        "/gyeonggi/uiwang/i-dong/",
+    ],
+    "gyeonggi/uiwang/guide/": [
+        "/gyeonggi/uiwang/",
+        "/gyeonggi/uiwang/reservation/",
+        "/gyeonggi/uiwang/check/",
+        "/gyeonggi/uiwang/bugok-dong/",
+        "/gyeonggi/uiwang/naeson-dong/",
+    ],
+    "gyeonggi/uiwang/support/": [
+        "/gyeonggi/uiwang/",
+        "/gyeonggi/uiwang/reservation/",
+        "/gyeonggi/uiwang/check/",
+        "/gyeonggi/uiwang/support/privacy/",
+        "/gyeonggi/uiwang/guide/",
+    ],
+    "gyeonggi/uiwang/support/privacy/": [
+        "/gyeonggi/uiwang/",
+        "/gyeonggi/uiwang/support/",
+        "/gyeonggi/uiwang/reservation/",
+        "/gyeonggi/uiwang/check/",
+        "/gyeonggi/uiwang/guide/",
+    ],
+}
+
+
+def make_related_links_html(path: str) -> str:
+    hrefs = _RELATED.get(path, [])
+    if not hrefs:
+        return ""
+    items = "".join(
+        f'<li><a href="{h}">{_LONGTAIL[h]}</a></li>'
+        for h in hrefs
+        if h in _LONGTAIL
+    )
+    if not items:
+        return ""
+    return (
+        '<nav class="related-links" aria-label="관련 안내 페이지">'
+        "<p><strong>관련 안내 페이지</strong></p>"
+        f"<ul>{items}</ul>"
+        "</nav>"
+    )
 
 
 def make_breadcrumb_schema(crumbs) -> dict:
@@ -199,6 +539,7 @@ def render_page(page: dict) -> str:
     h1_html = "" if hero else f"<h1>{h1}</h1>"
 
     body, toc_items = inject_toc(body)
+    body = body + make_related_links_html(path)
     toc_html = render_toc(toc_items)
     layout_cls = "page-layout has-toc" if toc_html else "page-layout"
 
